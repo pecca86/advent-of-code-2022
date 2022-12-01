@@ -1,5 +1,3 @@
-
-
 with open('input.txt', 'r') as file:
     times_increased = 0
     increased_three_slide = 0
