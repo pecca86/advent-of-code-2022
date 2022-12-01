@@ -6,6 +6,7 @@
 
 ### Java
 - Day 1: Challenge 1 & 2
+- Day 2:
 
 ### Python
 - Day 1: Challenge 1 & 2
