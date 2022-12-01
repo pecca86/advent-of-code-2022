@@ -12,4 +12,3 @@ with open('calories.txt', 'r') as file:
     caloriesPerElf.sort()
     print(caloriesPerElf[-1])
     print(sum(tuple(caloriesPerElf[-3::])))
-    
