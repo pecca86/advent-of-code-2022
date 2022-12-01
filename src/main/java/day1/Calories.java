@@ -26,7 +26,7 @@ public class Calories {
     private static List<Integer> calculateIndividualCalories() {
         List<Integer> myList = new ArrayList<>();
         int totalCalories = 0;
-        try(Scanner input = new Scanner(new BufferedReader(new FileReader("src/main/java/challenge1/calories.txt")))) {
+        try(Scanner input = new Scanner(new BufferedReader(new FileReader("src/main/java/day1/calories.txt")))) {
             while(input.hasNextLine()) {
                 String value = input.nextLine();
                 if (value.isEmpty()) {
