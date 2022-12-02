@@ -1,4 +1,4 @@
-package day1;
+package year2022.day1;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
