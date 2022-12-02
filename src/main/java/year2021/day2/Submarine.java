@@ -51,14 +51,13 @@ public class Submarine {
         }
     }
 
-    private static Scanner openFile() throws FileNotFoundException {
-        return new Scanner(new BufferedReader(new FileReader(FILE_PATH)));
-    }
-
-
     public static void main(String[] args) {
         Submarine sub = new Submarine();
         sub.readInstructions();
         System.out.println(sub.calculateEndCoordinates());
+    }
+
+    private static Scanner openFile() throws FileNotFoundException {
+        return new Scanner(new BufferedReader(new FileReader(FILE_PATH)));
     }
 }
