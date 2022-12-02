@@ -78,7 +78,6 @@ public class RockPaperScissors {
     private static Scanner openFile(String filePath) throws FileNotFoundException {
         return new Scanner(new BufferedReader(new FileReader(filePath)));
     }
-
 }
 
 
