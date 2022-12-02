@@ -114,5 +114,3 @@ public class RockPaperScissors {
         return new Scanner(new BufferedReader(new FileReader(FILE_PATH)));
     }
 }
-
-
