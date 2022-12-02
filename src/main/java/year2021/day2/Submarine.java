@@ -31,8 +31,7 @@ public class Submarine {
             case "up" -> this.moveUpwards(amount);
             case "down" -> this.moveDownwards(amount);
             case "forward" -> this.moveForward(amount);
-            default -> {
-            }
+            default -> {}
         }
     }
 
