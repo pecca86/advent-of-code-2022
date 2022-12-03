@@ -36,6 +36,7 @@ public class CalculateFromBits2 {
             leastCommonBit = leastCommonBit.equals("1") ? "0" : "1";
 
             mostCommonList = parseBitStringStartingWithIndexOf(mostCommonList, mostCommonBit, i);
+
             if (leastCommonList.size() > 1) {
                 leastCommonList = parseBitStringStartingWithIndexOf(leastCommonList, leastCommonBit, i);
             }
@@ -101,5 +102,4 @@ public class CalculateFromBits2 {
     private static Scanner openFile() throws FileNotFoundException {
         return new Scanner(new BufferedReader(new FileReader(FILE_PATH)));
     }
-
 }
