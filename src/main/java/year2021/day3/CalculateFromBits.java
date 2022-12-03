@@ -1,7 +1,5 @@
 package year2021.day3;
 
-import year2021.day2.Submarine2;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,12 +22,12 @@ public class CalculateFromBits {
 
     private static void calculatePowerConsumption(List<Integer> resultBits) {
         Long gammaRate = Long.parseLong(resultBits.stream()
-                                .map(bit -> String.valueOf(bit))
+                                .map(String::valueOf)
                                 .collect(Collectors.joining("")), 2);
 
         Long epsilonRate = Long.parseLong(resultBits.stream()
                 .map(b -> b == 1 ? 0 : 1)
-                .map(newBit -> String.valueOf(newBit))
+                .map(String::valueOf)
                 .collect(Collectors.joining("")), 2);
 
         Long powerConsumption = gammaRate * epsilonRate;
@@ -81,7 +79,6 @@ public class CalculateFromBits {
         }
         return result;
     }
-
 
     private static Scanner openFile() throws FileNotFoundException {
         return new Scanner(new BufferedReader(new FileReader(FILE_PATH)));
