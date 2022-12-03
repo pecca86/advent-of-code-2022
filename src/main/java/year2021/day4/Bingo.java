@@ -35,7 +35,8 @@ public class Bingo {
 
         System.out.println("=> Index of Winning Card: " + winningCardIndex);
         System.out.println("=> Last Drawn number: " + lastDrawnNumber);
-        int magicNumber = calculateWinningBoardSum() * lastDrawnNumber;
+        int sumOfWinningCard = calculateWinningBoardSum();
+        int magicNumber = sumOfWinningCard * lastDrawnNumber;
         System.out.println("=> Answer: " + magicNumber);
         System.out.println("\n=> Winning Card" + allCards.get(winningCardIndex));
     }
