@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Bingo2 {
     private static final String FILE_PATH = "src/main/java/year2021/day4/input.txt";
     private static List<Integer> lotteryNumbers;
-    private static final Map<Integer, List<Integer>> allCards = new HashMap<>();
+    private static final Map<Integer, List<Integer>> allCards = new LinkedHashMap<>();
     private static List<Integer> card = new ArrayList<>();
     private static int lastDrawnNumber;
     private static List<List<Integer>> winningRows;
@@ -27,13 +27,27 @@ public class Bingo2 {
             lastDrawnNumber = lotteryNumbers.get(0);
             markDrawnNumberOnAllCards(lotteryNumbers.remove(0));
             removeIfWinningCard();
-            if (allCards.size() <= 2) {
+            if (allCards.size() <= 1) {
                 break;
             }
         }
 
+
         System.out.println(lastDrawnNumber);
-        System.out.println(allCards.values());
+        System.out.println(allCards);
+
+        int finalResult = calculateCardSum(allCards.get(14));
+
+        System.out.println(finalResult*lastDrawnNumber);
+
+
+    }
+
+    private static int calculateCardSum(List<Integer> card) {
+        return card.stream()
+                .filter(i -> i != -1)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
     private static void markDrawnNumberOnAllCards(int lotteryNumber) {
         // If we find the drawn number inside a card, we mark its index and negate it
@@ -83,6 +97,7 @@ public class Bingo2 {
             if (!card.isEmpty()) {
                 allCards.put(mapIndex, card);
             }
+            allCards.remove(0); // Algorithm creates an empty 0 key entry list
         } catch (NumberFormatException | FileNotFoundException e) {
             e.printStackTrace();
         }
