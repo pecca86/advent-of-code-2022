@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
-public class SetTesting {
+public class FullSets {
     private static final String FILE_PATH = "src/main/java/year2022/day4/input.txt";
     static Map<Integer, SetPair> setPairsMap = new HashMap<>();
     static int count = 0;
