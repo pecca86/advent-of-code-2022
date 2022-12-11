@@ -15,7 +15,9 @@ public class Bingo2 {
     private static List<Integer> lotteryNumbers;
     private static final Map<Integer, List<Integer>> allCards = new LinkedHashMap<>();
     private static List<Integer> card = new ArrayList<>();
+    private static List<List<Integer>> cardsThatWon = new ArrayList<>();
     private static int lastDrawnNumber;
+    private static int lastDrawnWinningNumber;
     private static List<List<Integer>> winningRows;
 
     public static void main(String[] args) {
@@ -34,25 +36,35 @@ public class Bingo2 {
 
 
         System.out.println(lastDrawnNumber);
-        System.out.println(allCards);
 
-        int finalResult = calculateCardSum(allCards.get(14));
+        int finalResult = calculateCardSum(cardsThatWon.get(cardsThatWon.size()-1));
 
         System.out.println(finalResult*lastDrawnNumber);
+    }
 
-
+    public static void printCard(List<Integer> card) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < card.size(); i++) {
+            String numberToBeAdded = card.get(i).toString();
+            if (i < 2 || i % 5 != 0) {
+                sb.append(numberToBeAdded).append(" | ");
+            } else {
+                sb.append("\n").append(numberToBeAdded).append(" | ");
+            }
+        }
+        System.out.printf(sb.toString());
     }
 
     private static int calculateCardSum(List<Integer> card) {
         return card.stream()
-                .filter(i -> i != -1)
+                .filter(i -> i > -1)
                 .mapToInt(Integer::intValue)
                 .sum();
     }
     private static void markDrawnNumberOnAllCards(int lotteryNumber) {
         // If we find the drawn number inside a card, we mark its index and negate it
         allCards.values()
-                .forEach(card -> card.replaceAll(e -> Objects.equals(e, lotteryNumber) ? card.indexOf(e) * -1 : e));
+                .forEach(card -> card.replaceAll(e -> Objects.equals(e, lotteryNumber) ? (card.indexOf(e)+1000) * -1 : e));
     }
 
     private static void removeIfWinningCard() {
@@ -70,7 +82,8 @@ public class Bingo2 {
         }
 
         for (Integer key : keysToRemove) {
-            allCards.remove(key);
+            cardsThatWon.add(allCards.remove(key));
+            lastDrawnWinningNumber = lastDrawnNumber;
         }
     }
 
@@ -117,16 +130,16 @@ public class Bingo2 {
     private static void instantiateWinningRowsListList() {
         winningRows = new ArrayList<>();
 
-        winningRows.add(List.of(0,-1,-2,-3,-4));
-        winningRows.add(List.of(-5,-6,-7,-8,-9));
-        winningRows.add(List.of(-10,-11,-12,-13,-14));
-        winningRows.add(List.of(-15,-16,-17,-18,-19));
-        winningRows.add(List.of(-20,-21,-22,-23,-24));
+        winningRows.add(List.of(-1000,-1001,-1002,-1003,-1004));
+        winningRows.add(List.of(-1005,-1006,-1007,-1008,-1009));
+        winningRows.add(List.of(-1010,-1011,-1012,-1013,-1014));
+        winningRows.add(List.of(-1015,-1016,-1017,-1018,-1019));
+        winningRows.add(List.of(-1020,-1021,-1022,-1023,-1024));
 
-        winningRows.add(List.of(0,-5,-10,-15,-20));
-        winningRows.add(List.of(-1,-6,-11,-16,-21));
-        winningRows.add(List.of(-2,-7,-12,-17,-22));
-        winningRows.add(List.of(-3,-8,-13,-18,-23));
-        winningRows.add(List.of(-4,-9,-14,-19,-24));
+        winningRows.add(List.of(-1000,-1005,-1010,-1015,-1020));
+        winningRows.add(List.of(-1001,-1006,-1011,-1016,-1021));
+        winningRows.add(List.of(-1002,-1007,-1012,-1017,-1022));
+        winningRows.add(List.of(-1003,-1008,-1013,-1018,-1023));
+        winningRows.add(List.of(-1004,-1009,-1014,-1019,-1024));
     }
 }
