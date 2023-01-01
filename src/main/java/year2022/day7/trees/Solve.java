@@ -36,7 +36,6 @@ public class Solve {
                 String[] command = input.nextLine().split(" ");
                 interpretCommand(command);
             }
-
         } catch (NumberFormatException | FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -56,10 +55,12 @@ public class Solve {
         }
     }
 
-    private static void createNewFileInsideCurrentFolder(String[] command) {
-        System.out.println("Adding new file: " + command[1] + " in " + currentDirectory.name);
-        File file = new File(Integer.parseInt(command[0]), command[1]);
-        currentDirectory.addFile(file);
+    private static void executeCommand(String[] command) {
+        if (command[1].equals(CHANGE_DIRECTORY)) {
+            changeDirectory(command[2]);
+        } else {
+            listFilesInCurrentFolder(command[1]);
+        }
     }
 
     private static void createNewDirectoryInsideCurrentFolder(String[] command) {
@@ -69,16 +70,10 @@ public class Solve {
         currentDirectory.addChild(node);
     }
 
-    private static void executeCommand(String[] command) {
-        if (command[1].equals(CHANGE_DIRECTORY)) {
-            changeDirectory(command[2]);
-        } else {
-            listFilesInCurrentFolder(command[1]);
-        }
-    }
-
-    private static void listFilesInCurrentFolder(String s) {
-        System.out.println("Listing files in folder...");
+    private static void createNewFileInsideCurrentFolder(String[] command) {
+        System.out.println("Adding new file: " + command[1] + " in " + currentDirectory.name);
+        File file = new File(Integer.parseInt(command[0]), command[1]);
+        currentDirectory.addFile(file);
     }
 
     private static void changeDirectory(String folderName) throws RuntimeException {
@@ -100,5 +95,9 @@ public class Solve {
                 System.out.println("FOLDER NOT FOUND!");
             }
         }
+    }
+
+    private static void listFilesInCurrentFolder(String s) {
+        System.out.println("Listing files in folder...");
     }
 }
